@@ -62,7 +62,7 @@ function ProjectCard({ project, index }) {
         {/* Placeholder SVG — tamaño de fuente fijo para todos */}
         {project.data.image.includes("placehold.co") ? (
           <svg
-            className="absolute inset-0 w-full h-full group-hover:opacity-0 transition-opacity duration-500"
+            className="absolute inset-0 w-full h-full z-0 pointer-events-none group-hover:opacity-0 transition-opacity duration-500"
             viewBox="0 0 600 338"
             xmlns="http://www.w3.org/2000/svg"
             preserveAspectRatio="xMidYMid meet"
@@ -121,12 +121,12 @@ function ProjectCard({ project, index }) {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          className="absolute inset-0 w-full h-full object-cover z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         />
-        <div className="absolute top-3 right-3 bg-shark-950/80 backdrop-blur-sm px-2 py-1 rounded-sm text-[10px] text-shark-accent uppercase tracking-wider border border-shark-accent/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute top-3 right-3 z-30 bg-shark-950/80 backdrop-blur-sm px-2 py-1 rounded-sm text-[10px] text-shark-accent uppercase tracking-wider border border-shark-accent/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           Video Preview
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-shark-950 via-shark-950/40 to-transparent" />
+        <div className="absolute inset-0 z-20 bg-gradient-to-t from-shark-950 via-shark-950/40 to-transparent" />
       </div>
 
       {/* Content - always visible on mobile, slides up on desktop hover */}

@@ -58,13 +58,62 @@ function ProjectCard({ project, index }) {
       }}
     >
       {/* Image + Video on hover */}
-      <div className="aspect-video w-full overflow-hidden relative">
-        {/* Imagen visible por defecto */}
-        <img
-          src={project.data.image}
-          alt={project.data.title}
-          className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 group-hover:opacity-0 transition-all duration-500"
-        />
+      <div className="aspect-video w-full overflow-hidden relative bg-[#0a0f14]">
+        {/* Placeholder SVG — tamaño de fuente fijo para todos */}
+        {project.data.image.includes("placehold.co") ? (
+          <svg
+            className="absolute inset-0 w-full h-full group-hover:opacity-0 transition-opacity duration-500"
+            viewBox="0 0 600 338"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid meet"
+          >
+            <rect width="600" height="338" fill="#0a0f14" />
+            {/* Grid lines decorativas */}
+            <line
+              x1="0"
+              y1="169"
+              x2="600"
+              y2="169"
+              stroke="#00E5FF"
+              strokeOpacity="0.05"
+              strokeWidth="1"
+            />
+            <line
+              x1="300"
+              y1="0"
+              x2="300"
+              y2="338"
+              stroke="#00E5FF"
+              strokeOpacity="0.05"
+              strokeWidth="1"
+            />
+            <text
+              x="300"
+              y="185"
+              textAnchor="middle"
+              dominantBaseline="middle"
+              fill="#00E5FF"
+              fontSize="44"
+              fontFamily="'Space Grotesk', 'Inter', sans-serif"
+              fontWeight="300"
+              letterSpacing="8"
+            >
+              {/* Extraer el texto del parámetro text= de la URL */}
+              {decodeURIComponent(
+                (project.data.image.match(/text=([^&"]+)/) || [
+                  "",
+                  project.data.title,
+                ])[1].replace(/\+/g, " "),
+              )}
+            </text>
+          </svg>
+        ) : (
+          <img
+            src={project.data.image}
+            alt={project.data.title}
+            className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 group-hover:opacity-0 transition-all duration-500"
+          />
+        )}
         {/* Video que aparece al hacer hover */}
         <video
           ref={videoRef}

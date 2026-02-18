@@ -1,0 +1,46 @@
+---
+import '../styles/global.css';
+import '../styles/animations.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import ScrollProgress from '../components/ScrollProgress.astro';
+import FloatingParticles from '../components/FloatingParticles.tsx';
+import AnimatedBackground from '../components/AnimatedBackground.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import ScrollToTop from '../components/ScrollToTop.astro';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="SharkCorp - Ingeniería Web de Alto Calibre" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/png" href="/shark-icon.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title} | SharkCorp</title>
+	</head>
+	<body class="bg-shark-950 text-shark-50 antialiased selection:bg-shark-accent selection:text-shark-950">
+		<AnimatedBackground />
+		<FloatingParticles client:load />
+		<ScrollProgress />
+		<Navbar />
+		<main class="min-h-screen relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(0,229,255,0.1),transparent_50%)] pointer-events-none z-0"></div>
+			<div class="relative z-10">
+                <slot />
+            </div>
+		</main>
+		<Footer />
+		
+		<!-- Floating Elements -->
+		<WhatsAppButton />
+		<ScrollToTop />
+	</body>
+</html>

@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ProjectCatalog from '../components/ProjectCatalog.jsx';
+import Team from '../components/Team.astro';
+import ClientLogos from '../components/ClientLogos.astro';
+import Stats from '../components/Stats.astro';
+import Services from '../components/Services.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FAQ from '../components/FAQ.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+---
+
+<Layout title="Inicio">
+	<Hero />
+	
+	<ProjectCatalog client:load projects={projects} />
+	
+	<Team />
+    
+    <!-- Decorative Divider -->
+    <div class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent my-10"></div>
+    
+	<ClientLogos />
+    
+    <!-- Decorative Divider -->
+    <div class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent my-10"></div>
+    
+	<Stats />
+    
+    <!-- Decorative Divider -->
+    <div class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent my-10"></div>
+    
+	<Services />
+    
+    <!-- Decorative Divider -->
+    <div class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent my-10"></div>
+    
+	<Testimonials />
+    
+    <!-- Decorative Divider -->
+    <div class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent my-10"></div>
+    
+	<FAQ />
+    
+    <!-- Decorative Divider -->
+    <div class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent my-10"></div>
+    
+	<ContactForm />
+</Layout>

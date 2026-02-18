@@ -1,0 +1,74 @@
+---
+// Client Logos Section
+const clients = [
+  { name: "TechVision S.A.C.",  svg: `<rect x="4" y="4" width="72" height="72" rx="12" stroke="currentColor" stroke-width="3"/><circle cx="40" cy="34" r="10" stroke="currentColor" stroke-width="3"/><circle cx="40" cy="34" r="4" fill="currentColor"/><path d="M16 34 Q40 14 64 34 Q40 54 16 34Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><line x1="40" y1="50" x2="40" y2="58" stroke="currentColor" stroke-width="2.5"/><line x1="28" y1="58" x2="52" y2="58" stroke="currentColor" stroke-width="2.5"/>` },
+  { name: "FinanceApp S.A.",    svg: `<rect x="4" y="4" width="72" height="72" rx="12" stroke="currentColor" stroke-width="3"/><rect x="14" y="40" width="10" height="20" rx="2" fill="currentColor" opacity="0.7"/><rect x="28" y="28" width="10" height="32" rx="2" fill="currentColor" opacity="0.85"/><rect x="42" y="18" width="10" height="42" rx="2" fill="currentColor"/><rect x="56" y="32" width="10" height="28" rx="2" fill="currentColor" opacity="0.7"/>` },
+  { name: "EcoMarket Corp.",    svg: `<rect x="4" y="4" width="72" height="72" rx="12" stroke="currentColor" stroke-width="3"/><path d="M40 12 C24 12 18 26 22 42 C26 56 40 62 40 62 C40 62 54 56 58 42 C62 26 56 12 40 12Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><line x1="40" y1="12" x2="40" y2="62" stroke="currentColor" stroke-width="2"/><path d="M22 32 Q31 28 40 36" stroke="currentColor" stroke-width="2"/><path d="M58 32 Q49 28 40 36" stroke="currentColor" stroke-width="2"/>` },
+  { name: "DataFlow LLC",       svg: `<rect x="4" y="4" width="72" height="72" rx="12" stroke="currentColor" stroke-width="3"/><circle cx="20" cy="26" r="6" stroke="currentColor" stroke-width="2.5"/><circle cx="40" cy="40" r="6" stroke="currentColor" stroke-width="2.5"/><circle cx="60" cy="26" r="6" stroke="currentColor" stroke-width="2.5"/><circle cx="40" cy="56" r="6" stroke="currentColor" stroke-width="2.5"/><line x1="26" y1="29" x2="34" y2="37" stroke="currentColor" stroke-width="2"/><line x1="54" y1="29" x2="46" y2="37" stroke="currentColor" stroke-width="2"/><line x1="40" y1="46" x2="40" y2="50" stroke="currentColor" stroke-width="2"/>` },
+  { name: "CloudSync S.A.C.",   svg: `<rect x="4" y="4" width="72" height="72" rx="12" stroke="currentColor" stroke-width="3"/><path d="M22 44 C16 44 12 40 12 34 C12 28 17 24 23 24 C24 18 30 14 37 14 C44 14 50 19 51 26 C57 26 64 31 64 38 C64 44 59 48 53 48 L22 44Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M32 56 L28 60 L32 64" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M48 56 L52 60 L48 64" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="28" y1="60" x2="52" y2="60" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>` },
+  { name: "SmartAI Inc.",       svg: `<rect x="4" y="4" width="72" height="72" rx="12" stroke="currentColor" stroke-width="3"/><circle cx="40" cy="28" r="5" stroke="currentColor" stroke-width="2"/><circle cx="22" cy="40" r="5" stroke="currentColor" stroke-width="2"/><circle cx="58" cy="40" r="5" stroke="currentColor" stroke-width="2"/><circle cx="30" cy="56" r="5" stroke="currentColor" stroke-width="2"/><circle cx="50" cy="56" r="5" stroke="currentColor" stroke-width="2"/><line x1="35" y1="30" x2="27" y2="38" stroke="currentColor" stroke-width="1.5"/><line x1="45" y1="30" x2="53" y2="38" stroke="currentColor" stroke-width="1.5"/><line x1="25" y1="45" x2="28" y2="51" stroke="currentColor" stroke-width="1.5"/><line x1="55" y1="45" x2="52" y2="51" stroke="currentColor" stroke-width="1.5"/><line x1="35" y1="56" x2="45" y2="56" stroke="currentColor" stroke-width="1.5"/><line x1="38" y1="33" x2="32" y2="51" stroke="currentColor" stroke-width="1.5"/><line x1="42" y1="33" x2="48" y2="51" stroke="currentColor" stroke-width="1.5"/>` },
+  { name: "DevTools S.R.L.",    svg: `<rect x="4" y="4" width="72" height="72" rx="12" stroke="currentColor" stroke-width="3"/><path d="M28 22 L14 40 L28 58" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M52 22 L66 40 L52 58" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><line x1="44" y1="18" x2="36" y2="62" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>` },
+  { name: "WebFlow S.A.",       svg: `<rect x="4" y="4" width="72" height="72" rx="12" stroke="currentColor" stroke-width="3"/><path d="M10 22 L20 54 L30 32 L40 54 L50 32 L60 54 L70 22" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>` },
+  { name: "AppNova Corp.",      svg: `<rect x="4" y="4" width="72" height="72" rx="12" stroke="currentColor" stroke-width="3"/><path d="M40 12 C40 12 58 18 58 38 L58 52 L44 64 L44 50 C44 50 36 50 28 44 L16 44 L28 32 C28 26 33 16 40 12Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><circle cx="44" cy="32" r="4" stroke="currentColor" stroke-width="2"/><line x1="22" y1="58" x2="16" y2="64" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>` },
+  { name: "CodeLab S.A.C.",     svg: `<rect x="4" y="4" width="72" height="72" rx="12" stroke="currentColor" stroke-width="3"/><path d="M30 12 L30 34 L14 58 C12 62 15 68 20 68 L60 68 C65 68 68 62 66 58 L50 34 L50 12" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><line x1="26" y1="18" x2="54" y2="18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="30" cy="54" r="3" fill="currentColor" opacity="0.7"/><circle cx="44" cy="50" r="4" fill="currentColor" opacity="0.5"/><circle cx="52" cy="58" r="2.5" fill="currentColor" opacity="0.7"/>` },
+];
+---
+
+<section id="clients" class="relative py-20 px-6 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-shark-950 via-shark-900/20 to-shark-950"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+        <div class="text-center mb-16">
+            <p class="text-sm uppercase tracking-widest text-gray-500 mb-4">Confían en nosotros</p>
+            <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">
+                Nuestros <span class="text-shark-accent">Clientes</span>
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 items-center">
+            {clients.map(client => (
+                <div class="client-logo-wrapper group flex flex-col items-center gap-3">
+                    <svg viewBox="0 0 80 80" class="logo-svg w-20 h-20" fill="none" xmlns="http://www.w3.org/2000/svg" set:html={client.svg} />
+                    <span class="client-name text-base font-extrabold uppercase tracking-wide transition-colors duration-300 text-center leading-tight">
+                        {client.name}
+                    </span>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .client-logo-wrapper {
+        padding: 12px;
+        transition: transform 0.3s ease;
+        cursor: default;
+    }
+
+    .client-logo-wrapper:hover {
+        transform: scale(1.08);
+    }
+
+    .logo-svg {
+        color: #4b5563;
+        opacity: 0.5;
+        transition: all 0.4s ease;
+    }
+
+    .client-name {
+        color: #4b5563;
+        opacity: 0.5;
+        transition: all 0.4s ease;
+    }
+
+    .client-logo-wrapper:hover .logo-svg {
+        opacity: 1;
+        color: #00e5ff;
+        filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.4));
+    }
+
+    .client-logo-wrapper:hover .client-name {
+        opacity: 1;
+        color: #00e5ff;
+    }
+</style>

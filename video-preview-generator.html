@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+  <head>
+    <title>SharkCorp Project Preview Generator</title>
+    <style>
+      body {
+        margin: 0;
+        background: #050505;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: "Arial", sans-serif;
+      }
+      canvas {
+        border-radius: 8px;
+        box-shadow: 0 0 30px rgba(0, 229, 255, 0.2);
+        border: 1px solid rgba(0, 229, 255, 0.2);
+      }
+      .instructions {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        color: #00e5ff;
+        font-size: 14px;
+        background: rgba(5, 5, 5, 0.9);
+        padding: 15px;
+        border-radius: 4px;
+        border: 1px solid rgba(0, 229, 255, 0.3);
+        max-width: 300px;
+      }
+      .instructions h3 {
+        margin: 0 0 10px 0;
+        font-size: 16px;
+      }
+      .instructions p {
+        margin: 5px 0;
+        font-size: 12px;
+        color: #999;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="instructions">
+      <h3>🎥 Video Preview Generator</h3>
+      <p>Este canvas genera una animación que puedes grabar como video.</p>
+      <p><strong>Cómo grabar:</strong></p>
+      <p>1. Windows: Win + G (Xbox Game Bar)</p>
+      <p>2. Mac: Cmd + Shift + 5</p>
+      <p>3. OBS Studio (recomendado)</p>
+      <p><strong>Duración:</strong> 5-10 segundos</p>
+    </div>
+
+    <canvas id="demoCanvas" width="1280" height="720"></canvas>
+
+    <script>
+      const canvas = document.getElementById("demoCanvas");
+      const ctx = canvas.getContext("2d");
+      const particles = [];
+      const particleCount = 80;
+
+      // Initialize particles
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 3 + 1,
+          speedX: (Math.random() - 0.5) * 2,
+          speedY: (Math.random() - 0.5) * 2,
+          opacity: Math.random() * 0.5 + 0.3,
+        });
+      }
+
+      function animate() {
+        // Dark background
+        ctx.fillStyle = "#050505";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Animated particles
+        particles.forEach((p) => {
+          ctx.globalAlpha = p.opacity;
+          ctx.fillStyle = "#00E5FF";
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Particle movement
+          p.x += p.speedX;
+          p.y += p.speedY;
+
+          // Wrap around edges
+          if (p.x < 0) p.x = canvas.width;
+          if (p.x > canvas.width) p.x = 0;
+          if (p.y < 0) p.y = canvas.height;
+          if (p.y > canvas.height) p.y = 0;
+        });
+
+        // Pulsing circle effect
+        const time = Date.now() / 1000;
+        const pulse = Math.sin(time * 2) * 20 + 40;
+
+        ctx.globalAlpha = 0.15;
+        ctx.strokeStyle = "#00E5FF";
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.arc(
+          canvas.width / 2,
+          canvas.height / 2,
+          150 + pulse,
+          0,
+          Math.PI * 2,
+        );
+        ctx.stroke();
+
+        ctx.globalAlpha = 0.1;
+        ctx.beginPath();
+        ctx.arc(
+          canvas.width / 2,
+          canvas.height / 2,
+          200 + pulse * 0.5,
+          0,
+          Math.PI * 2,
+        );
+        ctx.stroke();
+
+        // Main text
+        ctx.globalAlpha = 1;
+        ctx.font = "bold 72px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillStyle = "#00E5FF";
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = "#00E5FF";
+        ctx.fillText("SHARKCORP", canvas.width / 2, canvas.height / 2 - 40);
+
+        // Subtitle
+        ctx.shadowBlur = 10;
+        ctx.font = "32px Arial";
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillText(
+          "PROJECT PREVIEW",
+          canvas.width / 2,
+          canvas.height / 2 + 50,
+        );
+
+        // Decorative line
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 0.6;
+        ctx.fillStyle = "#00E5FF";
+        const lineWidth = 250 + Math.sin(time * 3) * 20;
+        ctx.fillRect(
+          canvas.width / 2 - lineWidth / 2,
+          canvas.height / 2 + 100,
+          lineWidth,
+          3,
+        );
+
+        // Tech stack badges (animated)
+        const badges = ["REACT", "ASTRO", "TAILWIND"];
+        const badgeY = canvas.height / 2 + 150;
+        const badgeSpacing = 150;
+        const startX =
+          canvas.width / 2 - ((badges.length - 1) * badgeSpacing) / 2;
+
+        ctx.globalAlpha = 0.8;
+        ctx.font = "bold 14px Arial";
+        badges.forEach((badge, i) => {
+          const x = startX + i * badgeSpacing;
+          const offset = Math.sin(time * 2 + i) * 5;
+
+          // Badge background
+          ctx.fillStyle = "rgba(0, 229, 255, 0.1)";
+          ctx.fillRect(x - 40, badgeY + offset - 12, 80, 24);
+
+          // Badge border
+          ctx.strokeStyle = "#00E5FF";
+          ctx.lineWidth = 1;
+          ctx.strokeRect(x - 40, badgeY + offset - 12, 80, 24);
+
+          // Badge text
+          ctx.fillStyle = "#00E5FF";
+          ctx.fillText(badge, x, badgeY + offset);
+        });
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    </script>
+  </body>
+</html>

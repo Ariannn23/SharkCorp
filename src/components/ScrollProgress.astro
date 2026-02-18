@@ -1,0 +1,27 @@
+---
+// Scroll Progress Bar Component
+---
+
+<div id="scroll-progress" class="fixed top-0 left-0 w-full h-1 z-[100] pointer-events-none">
+    <div id="progress-bar" class="h-full bg-gradient-to-r from-shark-accent to-cyan-400 transition-all duration-100 ease-out" style="width: 0%"></div>
+</div>
+
+<script>
+    function updateScrollProgress() {
+        const scrollProgress = document.getElementById('progress-bar');
+        if (!scrollProgress) return;
+        
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollTop = window.scrollY;
+        
+        const scrollPercentage = (scrollTop / (documentHeight - windowHeight)) * 100;
+        scrollProgress.style.width = `${Math.min(scrollPercentage, 100)}%`;
+    }
+    
+    // Update on scroll
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    
+    // Update on load
+    updateScrollProgress();
+</script>
